@@ -32,6 +32,22 @@ int machine(string &s,int &cnt)
 				{
 					state = 23;
 				}
+				else if(s[i]-'0' >= 0 && s[i]-'0' <= 9)
+				{
+					state = 25;
+				}
+				else if(s[i] == '<')
+				{
+					state = 30;
+				}
+				else if(s[i] == '=')
+				{
+					state = 34;
+				}
+				else if(s[i] == '>')
+				{
+					state = 35;
+				}
 				else 
 				{
 					return -1;
@@ -237,6 +253,62 @@ int machine(string &s,int &cnt)
 				break;
 			case 24:
 				return 6;
+			case 25:
+				if(s[i]-'0' >= 0 && s[i]-'0' <= 9)
+				{
+					state = 25;
+				}
+				else if(s[i] == '\n' || s[i] == ' ')
+				{
+					return 7;
+				}
+				else
+				{
+					state = 5000;
+				}
+				break;
+			case 30:
+				if(s[i] != '=' && s[i] != '>')
+				{
+					return 8;
+				}
+				else if(s[i] == '=')
+				{
+					return 9;
+				}
+				else if(s[i] == '>')
+				{
+					return 10;
+				}
+				else
+				{
+					state = 5000;
+				}
+				break;
+			case 34:
+				if(s[i] == '\n' || s[i] == ' ')
+				{
+					return 11;
+				}
+				else
+				{
+					state = 1000;
+				}
+				break;
+			case 35:
+				if(s[i] != '=')
+				{
+					return 12;
+				}
+				if(s[i] == '=')
+				{
+					return 13;
+				}
+				else
+				{
+					state = 1000;
+				}
+				break;
 			default:
 				return -1;
 		}
@@ -266,22 +338,43 @@ int main()
 	switch(val)
 	{
 		case 1:
-			cout<<"Token: BEGIN  CODE : 1\n";
+			cout<<"Token: BEGIN KEYWORD CODE : 1\n";
 			break;
 		case 2:
-			cout<<"Token: END  CODE : 2\n";
+			cout<<"Token: END KEYWORD CODE : 2\n";
 			break;
 		case 3:
-			cout<<"Token: IF  CODE : 3\n";
+			cout<<"Token: IF KEYWORD CODE : 3\n";
 			break;
 		case 4:
-			cout<<"Token: THEN  CODE : 4\n";
+			cout<<"Token: THEN KEYWORD CODE : 4\n";
 			break;
 		case 5:
-			cout<<"Token: ELSE CODE : 5\n";
+			cout<<"Token: ELSE KEYWORD CODE : 5\n";
 			break;
 		case 6:
 			cout<<"Token: IDENTIFIER  CODE : 6\n";
+			break;
+		case 7:
+			cout<<"Token: CONSTANT  CODE : 7\n";
+			break;
+		case 8:
+			cout<<"Token: RELATIONAL OPERATOR  CODE : 8 VALUE : 1\n";
+			break;
+		case 9:
+			cout<<"Token: RELATIONAL OPERATOR  CODE : 8 VALUE : 2\n";
+			break;
+		case 10:
+			cout<<"Token: RELATIONAL OPERATOR  CODE : 8 VALUE : 4\n";
+			break;
+		case 11:
+			cout<<"Token: RELATIONAL OPERATOR  CODE : 8 VALUE : 3\n";
+			break;
+		case 12:
+			cout<<"Token: RELATIONAL OPERATOR  CODE : 8 VALUE : 5\n";
+			break;
+		case 13:
+			cout<<"Token: RELATIONAL OPERATOR  CODE : 8 VALUE : 6\n";
 			break;
 		default:
 			cout<<"Not identified Constant\n";
