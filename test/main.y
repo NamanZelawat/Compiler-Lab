@@ -1,5 +1,6 @@
 %{
 #include<stdio.h>
+#include<stdlib.h>
 int yylex();
 int yylval;
 void yyerror(char *s);
@@ -31,4 +32,5 @@ int main()
 void yyerror(char *s)
 {
 	fprintf(stderr, "%s\n", s);
+	exit(0);
 }

@@ -65,11 +65,12 @@
 #line 1 "main.y" /* yacc.c:339  */
 
 #include<stdio.h>
+#include<stdlib.h>
 int yylex();
 int yylval;
 void yyerror(char *s);
 
-#line 73 "y.tab.c" /* yacc.c:339  */
+#line 74 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -128,7 +129,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 132 "y.tab.c" /* yacc.c:358  */
+#line 133 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -425,7 +426,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    11,    11,    12,    15,    16,    17
+       0,    12,    12,    13,    16,    17,    18
 };
 #endif
 
@@ -1196,31 +1197,31 @@ yyreduce:
   switch (yyn)
     {
         case 3:
-#line 12 "main.y" /* yacc.c:1646  */
+#line 13 "main.y" /* yacc.c:1646  */
     { printf("=%d\n",(yyvsp[0])); }
-#line 1202 "y.tab.c" /* yacc.c:1646  */
+#line 1203 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 15 "main.y" /* yacc.c:1646  */
+#line 16 "main.y" /* yacc.c:1646  */
     { (yyval)  = (yyvsp[-2]) + (yyvsp[0]); }
-#line 1208 "y.tab.c" /* yacc.c:1646  */
+#line 1209 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 16 "main.y" /* yacc.c:1646  */
+#line 17 "main.y" /* yacc.c:1646  */
     { (yyval)  = (yyvsp[-2]) - (yyvsp[0]); }
-#line 1214 "y.tab.c" /* yacc.c:1646  */
+#line 1215 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 17 "main.y" /* yacc.c:1646  */
+#line 18 "main.y" /* yacc.c:1646  */
     { (yyval) = (yyvsp[0]); }
-#line 1220 "y.tab.c" /* yacc.c:1646  */
+#line 1221 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1224 "y.tab.c" /* yacc.c:1646  */
+#line 1225 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1448,7 +1449,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 19 "main.y" /* yacc.c:1906  */
+#line 20 "main.y" /* yacc.c:1906  */
 
 
 extern FILE *yyin;
@@ -1464,4 +1465,5 @@ int main()
 void yyerror(char *s)
 {
 	fprintf(stderr, "%s\n", s);
+	exit(0);
 }
