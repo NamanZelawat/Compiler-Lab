@@ -1,0 +1,234 @@
+Creating grammar...
+Reading from grammar.txt...
+	Found a NonTerminal "E"
+	Found a Terminal "+"
+	Found a NonTerminal "T"
+	Found a NonTerminal "T"
+	Found a NonTerminal "T"
+	Found a Terminal "*"
+	Found a NonTerminal "F"
+	Found a NonTerminal "F"
+	Found a Terminal "("
+	Found a NonTerminal "E"
+	Found a Terminal ")"
+	Found a Terminal "_"
+Reading is done!
+
+--------------------------------------------------------
+-------------------------Constructed BNF-------------------------
+--------------------------------------------------------
+E -> E + T | T
+T -> T * F | F
+F -> ( E ) | _
+
+Creating First and Follow Sets...
+
+--------------------------------------------------------
+-------------------------First Sets :-------------------------
+--------------------------------------------------------
+First of E : {(}
+First of T : {(}
+First of F : {(,_}
+
+--------------------------------------------------------
+-------------------------Follow Sets-------------------------
+--------------------------------------------------------
+Follow of E : {$,+,)}
+Follow of T : {$,+,),*}
+Follow of F : {$,+,),*}
+First and follow sets are constructed!
+Converting grammer to augemented version...
+
+--------------------------------------------------------
+-------------------------Converted BNF-------------------------
+--------------------------------------------------------
+S' -> E
+E -> E + T | T
+T -> T * F | F
+F -> ( E ) | _
+
+Converting is done!
+Creating Canonical Closure Sets(States)...
+Canonical Closure Sets(States) Done!
+
+--------------------------------------------------------
+-------------------------States-------------------------
+--------------------------------------------------------
+
+----------------------------------------
+State Name : s0
+( goes to s1 when reads : E)
+( goes to s2 when reads : T)
+( goes to s3 when reads : F)
+( goes to s4 when reads : ()
+( goes to s5 when reads : _)
+----------------------------------------
+S' --> .<E>
+E --> .<E><+><T>
+E --> .<T>
+T --> .<T><*><F>
+T --> .<F>
+F --> .<(><E><)>
+F --> .<_>
+
+----------------------------------------
+State Name : s1
+( goes to s6 when reads : +)
+----------------------------------------
+S' --> <E>.
+E --> <E>.<+><T>
+
+----------------------------------------
+State Name : s2
+( goes to s7 when reads : *)
+----------------------------------------
+E --> <T>.
+T --> <T>.<*><F>
+
+----------------------------------------
+State Name : s3
+----------------------------------------
+T --> <F>.
+
+----------------------------------------
+State Name : s4
+( goes to s8 when reads : E)
+( goes to s2 when reads : T)
+( goes to s3 when reads : F)
+( goes to s4 when reads : ()
+( goes to s5 when reads : _)
+----------------------------------------
+F --> <(>.<E><)>
+E --> .<E><+><T>
+E --> .<T>
+T --> .<T><*><F>
+T --> .<F>
+F --> .<(><E><)>
+F --> .<_>
+
+----------------------------------------
+State Name : s5
+----------------------------------------
+F --> <_>.
+
+----------------------------------------
+State Name : s6
+( goes to s9 when reads : T)
+( goes to s3 when reads : F)
+( goes to s4 when reads : ()
+( goes to s5 when reads : _)
+----------------------------------------
+E --> <E><+>.<T>
+T --> .<T><*><F>
+T --> .<F>
+F --> .<(><E><)>
+F --> .<_>
+
+----------------------------------------
+State Name : s7
+( goes to s10 when reads : F)
+( goes to s4 when reads : ()
+( goes to s5 when reads : _)
+----------------------------------------
+T --> <T><*>.<F>
+F --> .<(><E><)>
+F --> .<_>
+
+----------------------------------------
+State Name : s8
+( goes to s11 when reads : ))
+( goes to s6 when reads : +)
+----------------------------------------
+F --> <(><E>.<)>
+E --> <E>.<+><T>
+
+----------------------------------------
+State Name : s9
+( goes to s7 when reads : *)
+----------------------------------------
+E --> <E><+><T>.
+T --> <T>.<*><F>
+
+----------------------------------------
+State Name : s10
+----------------------------------------
+T --> <T><*><F>.
+
+----------------------------------------
+State Name : s11
+----------------------------------------
+F --> <(><E><)>.
+Creating parsing table...
+Parsing Table is done!
+
+--------------------------------------------------------
+-------------------------Parsing Table-------------------------
+--------------------------------------------------------
+s0 -> 
+	((, shift to s4)
+	(E, goto s1)
+	(F, goto s3)
+	(T, goto s2)
+	(_, shift to s5)
+s1 -> 
+	($, accept)
+	(+, shift to s6)
+s10 -> 
+	($, reduce T -> <T><*><F>)
+	(), reduce T -> <T><*><F>)
+	(*, reduce T -> <T><*><F>)
+	(+, reduce T -> <T><*><F>)
+s11 -> 
+	($, reduce F -> <(><E><)>)
+	(), reduce F -> <(><E><)>)
+	(*, reduce F -> <(><E><)>)
+	(+, reduce F -> <(><E><)>)
+s2 -> 
+	($, reduce E -> <T>)
+	(), reduce E -> <T>)
+	(*, shift to s7)
+	(+, reduce E -> <T>)
+s3 -> 
+	($, reduce T -> <F>)
+	(), reduce T -> <F>)
+	(*, reduce T -> <F>)
+	(+, reduce T -> <F>)
+s4 -> 
+	((, shift to s4)
+	(E, goto s8)
+	(F, goto s3)
+	(T, goto s2)
+	(_, shift to s5)
+s5 -> 
+	($, reduce F -> <_>)
+	(), reduce F -> <_>)
+	(*, reduce F -> <_>)
+	(+, reduce F -> <_>)
+s6 -> 
+	((, shift to s4)
+	(F, goto s3)
+	(T, goto s9)
+	(_, shift to s5)
+s7 -> 
+	((, shift to s4)
+	(F, goto s10)
+	(_, shift to s5)
+s8 -> 
+	(), shift to s11)
+	(+, shift to s6)
+s9 -> 
+	($, reduce E -> <E><+><T>)
+	(), reduce E -> <E><+><T>)
+	(*, shift to s7)
+	(+, reduce E -> <E><+><T>)
+
+--------------------------------------------------------
+-------------------------Parsing Results-------------------------
+--------------------------------------------------------
+_F -> <_>
+_T -> <F>
+_E -> <T>
+_+_F -> <_>
+_+_T -> <F>
+_+_E -> <E><+><T>
+Accepted
